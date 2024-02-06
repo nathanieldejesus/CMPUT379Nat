@@ -54,7 +54,7 @@ static void printTable(int *pidArray[],char lineArray[NPROC][MAXLINE]) {
         // int arraySize = sizeof(pidArray);
 
         for (int j = 0; j < NPROC; j++) {
-                printf("%d [%d:'%s']\n", j, pidArray[j], lineArray[j]);
+                //printf("%d [%d:'%s']\n", j, pidArray[j], lineArray[j]);
         }
 }
 
@@ -150,7 +150,7 @@ int main(int argc, char *argv[]) {
                 i++;
         }
 
-        printTable(pidArray,lineArray);
+        //printTable(pidArray,lineArray);
 
 
         return  0;
