@@ -5,7 +5,8 @@
 #include <sys/wait.h>
 
 int main(int argc, char* argv[]) {
-
+    // most of the code comes from the AI generated png,
+    // with a few tweaks to make it work properly
     if (argc != 2) {
         fprintf(stderr, "Usage: %s (w|s)\n", argv[0]);
         return 1;
@@ -21,11 +22,9 @@ int main(int argc, char* argv[]) {
     }
     
     if (childPid == 0) {
-        // child 
-        
+        // child process
         // if execlp is successful
         execlp("./myclock", "myclock", "out1", (char *) NULL);
-        exit(EXIT_SUCCESS);
 
         // If execlp fails, handle the error
         perror("execlp");
@@ -35,9 +34,10 @@ int main(int argc, char* argv[]) {
     else {
         // parent
         if (argv[1][0] == 'w') {
-            // If 'w' is written, wait for the child process to terminate
+            // wait till child terminates then send signal
             int status;
             waitpid(childPid, &status, 0);
+            
             if (WIFEXITED(status)) {
                 printf ("Child process terminated with exit code: %dn", WEXITSTATUS (status));  
             }
@@ -46,11 +46,11 @@ int main(int argc, char* argv[]) {
             }
         } 
         else if (argv[1][0] == 's') {
-            // If 's' is written, sleep for 2 minutes then exit
+            // sleep 2 min
             sleep(120);
         }
         else {
-            // where w|s is not inputted
+            // wrong input error
             fprintf(stderr, "Invalid option. Use 'w' or 's'.\n");
             return 1;
         }
