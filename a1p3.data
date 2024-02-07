@@ -1,4 +1,5 @@
 # Comment lines and empty lines should be ignored
+
 timeout 3 ./myclock outA
 timeout 4 myclock outB
 xyz
